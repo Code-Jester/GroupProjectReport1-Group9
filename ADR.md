@@ -1,30 +1,37 @@
+## `ADR.md`
+
+```markdown
 # Architectural Decision Records
 
-## ADR 1: Use a separate Participation model for Youth–Program relationships
+## ADR 1: Use a separate WorkerSkill model for Worker–Skill relationships
 
 ### Status
 Accepted
 
 ### Context
-The system needs to record which youth participates in which program. A simple direct many-to-many relationship could connect Youth and Program, but the project may need extra details such as participation start date and status.
+The application needs to store worker skills as part of the workforce planning system. A worker can have many skills, and the same skill can belong to many workers. However, the project also needs to record extra details about each relationship, especially the worker’s proficiency level.
 
 ### Alternatives considered
-1. Use a direct ManyToManyField between Youth and Program  
-   - Pros: simpler to write  
-   - Cons: hard to store additional participation details
+1. Use a direct ManyToManyField between Worker and Skill  
+   - Pros: simple and fast to implement  
+   - Cons: cannot store extra information such as proficiency level  
 
-2. Use a separate Participation model  
-   - Pros: supports extra fields like start_date and status, more flexible for future extension  
-   - Cons: requires more code and an extra model
+2. Store skills as text inside the Worker model  
+   - Pros: very easy to set up  
+   - Cons: poor database design, difficult to query, and not scalable  
+
+3. Use a separate WorkerSkill model  
+   - Pros: supports extra fields, more flexible, and better for future expansion  
+   - Cons: requires more code and slightly more complex queries  
 
 ### Decision
-We chose a separate Participation model with ForeignKey links to Youth and Program.
+We decided to use a separate `WorkerSkill` model with ForeignKey links to `Worker` and `Skill`.
 
 ### Code reference
-- `core/models.py`
+- `workforce/models.py`
 
 ### Consequences
-This design is more scalable and better represents real-world participation records. It also supports future features such as attendance, notes, or completion status.
+This decision makes the system more flexible and better organised. It also allows the project to store proficiency levels for each worker’s skill, which is important for workforce planning and job matching.
 
 ---
 
@@ -34,51 +41,79 @@ This design is more scalable and better represents real-world participation reco
 Accepted
 
 ### Context
-The project needs a quick and reliable way to create, edit, and test Youth, Program, and Participation data during development.
+During development, the project needed a quick and reliable way to add, edit, and test data for workers, employers, jobs, training programs, and applications.
 
 ### Alternatives considered
-1. Build custom HTML forms immediately  
-   - Pros: more user-friendly for final users  
-   - Cons: slower to implement early in development
+1. Build custom HTML forms from the beginning  
+   - Pros: more suitable for end users  
+   - Cons: slower to develop in the early stage  
 
 2. Use Django admin first  
-   - Pros: fast setup, built-in CRUD, useful for testing  
-   - Cons: not a polished public-facing interface
+   - Pros: fast, built-in, and useful for testing  
+   - Cons: less customised than a normal front-end page  
 
 ### Decision
-We chose to use Django admin first for rapid development and testing.
+We decided to use Django admin first to manage data during development.
 
 ### Code reference
-- `core/admin.py`
+- `workforce/admin.py`
 
 ### Consequences
-This speeds up development and helps verify the database structure before building more advanced front-end features.
+This decision helped speed up development and made it easier to test the database structure and model relationships before building more advanced front-end features.
 
 ---
 
-## ADR 3: Use function-based views for the first version
+## ADR 3: Use class-based views for standard pages
 
 ### Status
 Accepted
 
 ### Context
-The first version of the project needs simple pages to display youth, programs, and participations.
+The project requires several common pages, such as worker lists, worker details, employer lists, and job lists. The team needed to decide whether these pages should be built with function-based views or class-based views.
 
 ### Alternatives considered
-1. Use class-based views  
-   - Pros: reusable and powerful  
-   - Cons: harder for beginners to understand at the start
+1. Use function-based views  
+   - Pros: simple and clear for beginners  
+   - Cons: repetitive for common list and detail pages  
 
-2. Use function-based views  
-   - Pros: simple, clear, easy to debug  
-   - Cons: may become repetitive in larger systems
+2. Use class-based views  
+   - Pros: reusable, cleaner for standard pages, and follows Django conventions  
+   - Cons: can be harder to understand at first  
 
 ### Decision
-We chose function-based views for the initial implementation.
+We decided to use class-based views for standard list and detail pages.
 
 ### Code reference
-- `core/views.py`
-- `core/urls.py`
+- `workforce/views.py`
+- `workforce/urls.py`
 
 ### Consequences
-This makes the first version easier to understand and explain. The system can later be refactored to class-based views if needed.
+This reduced repeated code and made the views more organised. It also helped demonstrate a better understanding of Django’s built-in generic views.
+
+---
+
+## ADR 4: Keep Employer and Worker as separate models
+
+### Status
+Accepted
+
+### Context
+The system includes both workers and employers, but they represent different types of entities. Workers are people looking for opportunities, while employers are organisations offering jobs.
+
+### Alternatives considered
+1. Use one combined model for both  
+   - Pros: fewer models  
+   - Cons: unclear design, mixed responsibilities, and harder to maintain  
+
+2. Keep Worker and Employer as separate models  
+   - Pros: clearer object-oriented design, easier to understand, and better matches the project theme  
+   - Cons: some similar fields may be repeated  
+
+### Decision
+We decided to keep `Worker` and `Employer` as separate models.
+
+### Code reference
+- `workforce/models.py`
+
+### Consequences
+This made the project structure clearer and easier to explain. It also better reflects the real-world roles in a workforce system.
