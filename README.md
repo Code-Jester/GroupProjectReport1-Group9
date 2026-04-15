@@ -33,7 +33,7 @@ WorkforceConnect is a Django web application developed for Theme 2: Economic Str
 1. Open the project folder in VS Code
 2. Open the terminal
 3. Activate the virtual environment
-4. Make Sure Directory is in
+4. Make Sure Directory in Terminal is :
    ```bash
    \GroupProjectReport1-Group9\workforceconnect
 7. Run the server with:
