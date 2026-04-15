@@ -1,6 +1,3 @@
-## `ADR.md`
-
-```markdown
 # Architectural Decision Records
 
 ## ADR 1: Use a separate WorkerSkill model for Worker–Skill relationships
