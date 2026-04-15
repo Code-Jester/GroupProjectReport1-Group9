@@ -33,7 +33,10 @@ WorkforceConnect is a Django web application developed for Theme 2: Economic Str
 1. Open the project folder in VS Code
 2. Open the terminal
 3. Activate the virtual environment
-4. Run the server with:
+4. Make Sure Directory is in
+   ```bash
+   \GroupProjectReport1-Group9\workforceconnect
+7. Run the server with:
    ```bash
    python manage.py runserver
-5. Open Browser and open this url : http://127.0.0.1:8000/
+8. Open Browser and open this url : http://127.0.0.1:8000/
