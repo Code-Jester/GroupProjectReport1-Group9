@@ -36,3 +36,4 @@ WorkforceConnect is a Django web application developed for Theme 2: Economic Str
 4. Run the server with:
    ```bash
    python manage.py runserver
+5. Open Browser and open this url : http://127.0.0.1:8000/
