@@ -6,7 +6,8 @@
 Accepted
 
 ### Context
-The application needs to store worker skills as part of the workforce planning system. A worker can have many skills, and the same skill can belong to many workers. However, the project also needs to record extra details about each relationship, especially the worker’s proficiency level.
+This is a system we created to collect data on the information and skills of workers. In reality, a worker can encompass multiple skills, and a single skill can belong to multiple workers. This is a many-to-many relationship.
+Furthermore, the system also stores information on each employee's skills, so designing it to filter data helps provide a more objective view of each employee.
 
 ### Alternatives considered
 1. Use a direct ManyToManyField between Worker and Skill  
