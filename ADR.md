@@ -111,7 +111,76 @@ The system includes both workers and employers, but they represent different typ
 We decided to keep `Worker` and `Employer` as separate models.
 
 ### Code reference
+
 - `workforce/models.py`
 
 ### Consequences
 This made the project structure clearer and easier to explain. It also better reflects the real-world roles in a workforce system.
+
+---
+
+## ADR 5:Using SQLite for Development Environments
+
+### Status
+
+Accepted
+
+### Context
+
+A basic database management and information gathering system is essential for rapid development in a local environment. Filtering information is detailed, accurate, neat, and immediate.
+
+### Options Considered
+1. PostgreSQL / MySQL
+   - Pros: Powerful, suitable for production environments
+   - Cons: Complex configuration
+
+2. SQLite
+   - Pros: No server installation required
+                 Built-in in Django
+                 Easy to use
+   - Cons: Not suitable for large systems
+
+### Decision
+
+Use SQLite for development.
+
+### Code reference
+
+- `settings.py`
+
+### Consequences
+
+Helps to accelerate development and simplify the environment. Can be switched to PostgreSQL at deployment.
+
+## ADR 6: Using Django ORM instead of raw SQL
+
+### Status
+
+Accepted
+
+### Context
+
+The team needs to query data from a database. Raw SQL or ORM can be used.
+
+### Options Considered
+1. Raw SQL
+   - Pros: Optimized, flexible
+   - Cons: Difficult to maintain, prone to errors
+
+2. Django ORM
+   - Pros: Easy to read
+                 Secure (avoids SQL injection)
+                 Integrated with Django
+   - Cons: Less flexible than pure SQL
+
+### Decision
+
+Use Django ORM for all queries.
+
+### Code Reference
+
+- `models.py/views.py`
+
+### Consequence
+
+The code is easy to understand, easy to maintain, suitable for learning projects and medium-sized projects.
