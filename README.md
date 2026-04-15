@@ -1,51 +1,36 @@
-# Economic Strategy & Workforce
+# WorkforceConnect - Group9
 
 ## Overview
-This project is a Django-based web application designed to manage youth justice cases, programs, and participation records.
+WorkforceConnect is a Django web application developed for Theme 2: Economic Strategy & Workforce. The purpose of this project is to create a simple system that can manage workers, employers, job opportunities, training programs, and applications in one place. The project focuses on workforce planning and supports the idea of connecting people, skills, and employment opportunities through a structured web application.
 
 ## Features
-- Manage youth records (name, age, case ID, risk level)
-- Manage rehabilitation programs
-- Track participation of youth in programs
-- Admin panel for data management
-- Web interface to view data
+- View and manage worker records
+- View and manage employer records
+- View and manage job opportunities
+- View and manage training programs
+- Track worker applications for jobs
+- Use Django admin to add, edit, and delete data
+- View workforce information through a web interface
 
 ## Technologies Used
 - Python
 - Django
 - SQLite
+- HTML
+- CSS
 
 ## Project Structure
-- core: main app (models, views, urls)
-- config: Django project settings
-- templates: HTML templates
-- db.sqlite3: database
+- `config` – main Django project settings and URL configuration
+- `workforce` – main application containing models, views, admin, urls, and templates
+- `db.sqlite3` – database file
+- `manage.py` – Django management file
+- `static` – CSS files for styling
+- `templates` – HTML templates for the user interface
 
-## How to Run
-
-1. Activate virtual environment:# Youth Justice System
-
-## Overview
-This project is a web application to manage youth justice cases in the Northern Territory.
-
-## Features
-- Dashboard with statistics
-- Youth management (add & view)
-- Program management
-- Participation tracking
-- Admin panel (Django)
-
-## Technologies
-- Django (Python)
-- HTML/CSS
-- SQLite Database
-
-## How to Run
-1. Open terminal
-2. Run: python manage.py runserver
-3. Go to: http://127.0.0.1:8000/
-
-## Design Decisions
-- Used Django MVT architecture
-- Used reusable base template for UI consistency
-- Simple UI for usability and clarity
+## How to Run the Project
+1. Open the project folder in VS Code
+2. Open the terminal
+3. Activate the virtual environment
+4. Run the server with:
+   ```bash
+   python manage.py runserver
