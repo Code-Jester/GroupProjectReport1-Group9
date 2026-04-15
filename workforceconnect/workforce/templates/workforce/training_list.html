@@ -1,0 +1,16 @@
+{% extends 'workforce/base.html' %}
+
+{% block content %}
+    <h2>Training Programs</h2>
+    <ul class="card-list">
+        {% for training in training_programs %}
+            <li>
+                <strong>{{ training.title }}</strong><br>
+                Provider: {{ training.provider }}<br>
+                Duration: {{ training.duration_weeks }} weeks
+            </li>
+        {% empty %}
+            <li>No training programs found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
