@@ -1,0 +1,16 @@
+{% extends 'workforce/base.html' %}
+
+{% block content %}
+    <h2>Workers</h2>
+    <ul class="card-list">
+        {% for worker in workers %}
+            <li>
+                <a href="{% url 'worker_detail' worker.pk %}"><strong>{{ worker.name }}</strong></a><br>
+                Experience: {{ worker.experience_level }}<br>
+                Available: {{ worker.availability }}
+            </li>
+        {% empty %}
+            <li>No workers found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
