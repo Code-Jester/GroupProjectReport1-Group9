@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1>Add Youth</h1>
+
+<div class="card">
+<form method="POST">
+    {% csrf_token %}
+
+    <p>First name:</p>
+    <input type="text" name="first_name">
+
+    <p>Last name:</p>
+    <input type="text" name="last_name">
+
+    <p>Age:</p>
+    <input type="number" name="age">
+
+    <p>Case ID:</p>
+    <input type="text" name="case_id">
+
+    <p>Risk Level:</p>
+    <select name="risk_level">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+    </select>
+
+    <br><br>
+    <button class="btn">Save</button>
+</form>
+</div>
+{% endblock %}

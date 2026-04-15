@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<h1>Youth List</h1>
+
+<a class="btn" href="/youths/add/">Add Youth</a>
+
+<div class="card">
+
+    {% if youths %}
+
+    <table>
+        <tr>
+            <th>Case ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Risk Level</th>
+        </tr>
+
+        {% for y in youths %}
+        <tr>
+            <td>{{ y.case_id }}</td>
+            <td>{{ y.first_name }} {{ y.last_name }}</td>
+            <td>{{ y.age }}</td>
+            <td>
+                {% if y.risk_level == "High" %}
+                    <span style="color:red; font-weight:bold;">High</span>
+                {% elif y.risk_level == "Medium" %}
+                    <span style="color:orange; font-weight:bold;">Medium</span>
+                {% else %}
+                    <span style="color:green; font-weight:bold;">Low</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+        <p>No youth records available.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}
