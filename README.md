@@ -1,4 +1,4 @@
-# Youth Justice System (Django Web App)
+# Economic Strategy & Workforce
 
 ## Overview
 This project is a Django-based web application designed to manage youth justice cases, programs, and participation records.
