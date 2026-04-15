@@ -1,5 +1,7 @@
 # WorkforceConnect - Group9
+Project theme: Economic Strategy and Workforce
 
+Team Members: Brandon - S389937 Cahaya - S387346 Chanveasna - S377961 Kevin - S385480
 ## Overview
 WorkforceConnect is a Django web application developed for Theme 2: Economic Strategy & Workforce. The purpose of this project is to create a simple system that can manage workers, employers, job opportunities, training programs, and applications in one place. The project focuses on workforce planning and supports the idea of connecting people, skills, and employment opportunities through a structured web application.
 
