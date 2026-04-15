@@ -1,9 +1,23 @@
-# Assessment 2 Submission Checklist
+## Project Overiew
 
+This project is based on Django Web application, as it required us to build a web application using python in this assessment. This application focuses on building a structured application where it has accessed to the data by selecting from the dataset. Our project are based on economics strategy and workforce, where the target is to provide a support for youth workers, employers. The project focus on accessiblility, ensuring that they have choices and find what suits them the most.
+
+## Scope
+The plan is to ensure the application's functionality is running perfectly and have a clear templaets for users to interfere. The scope that are used in this assessment are:
+- ADR documentaion
+- Django Web Application
+- Supplementary Materials
+
+## Next Assessment Scope
+- More advance on the application design
+- Develop more industry process
+- Improve on problem-solving and implement new features
+
+# Assessment 2 Submission Checklist
 ## Final submission
-- [ ] One shared GitHub repository URL submitted on Learnline
-- [ ] Repository is accessible to the marker
-- [ ] Work completed by the existing group (not individual submission)
+- [x] One shared GitHub repository URL submitted on Learnline
+- [x] Repository is accessible to the marker
+- [x] Work completed by the existing group (not individual submission)
 
 ## Django application
 - [ ] Django project runs successfully
@@ -50,3 +64,8 @@
 - [ ] Check ADR references match real code lines
 - [ ] Check the app is runnable
 - [ ] Be ready for a 10-minute live code walkthrough and viva
+
+The plan is to ensure the application's functionality is running perfectly and have a clear templaets for users to interfere. The scope that are used in this assessment are:
+- ADR documentaion
+- Django Web Application
+- 
