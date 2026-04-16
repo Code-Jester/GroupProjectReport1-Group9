@@ -17,14 +17,12 @@ WorkforceConnect is a Django web application developed for Theme 2: Economic Str
 ## Technologies Used
 - Python
 - Django
-- SQLite
 - HTML
 - CSS
 
 ## Project Structure
 - `config` – main Django project settings and URL configuration
 - `workforce` – main application containing models, views, admin, urls, and templates
-- `db.sqlite3` – database file
 - `manage.py` – Django management file
 - `static` – CSS files for styling
 - `templates` – HTML templates for the user interface
