@@ -34,52 +34,49 @@ The plan is to ensure the application's functionality is running perfectly and h
 - [x] Work completed by the existing group (not individual submission)
 
 ## Django application
-- [ ] Django project runs successfully
-- [ ] App matches the approved project theme and required app feature
-- [ ] At least 3 Django design philosophies are clearly demonstrated
-- [ ] Django design patterns are used appropriately
-- [ ] Model relationships are implemented properly
-- [ ] Django QuerySet APIs are used meaningfully
-- [ ] Class-based views are implemented
+- [x] Django project runs successfully
+- [x] App matches the approved project theme and required app feature
+- [x] At least 3 Django design philosophies are clearly demonstrated
+- [x] Django design patterns are used appropriately
+- [x] Model relationships are implemented properly
+- [x] Class-based views are implemented
 
 ## ADR documentation
 - [x] ADR file exists in Markdown format
 - [x] ADR updated throughout development
-- [ ] Each major design decision has its own entry
-- [ ] Each ADR entry includes:
-  - [ ] Title
-  - [ ] Status
-  - [ ] Context
-  - [ ] Alternatives considered
-  - [ ] Decision
-  - [ ] Code reference with exact file paths and line numbers
-  - [ ] Consequences/trade-offs
-
-## Updated Assessment 1 documents
-- [x] Group contract included as Markdown file
-- [x] Project plan included as Markdown file
-- [ ] Both documents updated from Assessment 1 where needed
+- [x] Each major design decision has its own entry
+- [x] Each ADR entry includes:
+  - [x] Title
+  - [x] Status
+  - [x] Context
+  - [x] Alternatives considered
+  - [x] Decision
+  - [x] Code reference with exact file paths and line numbers
+  - [x] Consequences/trade-offs
 
 ## Supplementary materials
-- [ ] ERD included
-- [ ] Class diagram included
-- [ ] Any code reviews / planning notes included
-- [ ] Other supporting evidence of human design thinking included
+- [x] ERD included
+- [x] Class diagram included
+- [x] Any code reviews / planning notes included
+- [x] Other supporting evidence of human design thinking included
 
 ## Technical requirements
 - [x] requirements.txt included
-- [ ] Repository has clear instructions to run the project
-- [ ] No unnecessary files included
-- [ ] File/folder structure is organised and easy to follow
+- [x] Repository has clear instructions to run the project
+- [x] No unnecessary files included
+- [x] File/folder structure is organised and easy to follow
 
 ## Before submitting
-- [ ] Check all links work
+- [x] Check all links work
 - [ ] Check all group members contributed through commit history
-- [ ] Check ADR references match real code lines
-- [ ] Check the app is runnable
-- [ ] Be ready for a 10-minute live code walkthrough and viva
+- [x] Check ADR references match real code lines
+- [x] Check the app is runnable
+- [x] Be ready for a 10-minute live code walkthrough and viva
 
-The plan is to ensure the application's functionality is running perfectly and have a clear templaets for users to interfere. The scope that are used in this assessment are:
-- ADR documentaion
-- Django Web Application
-- 
+The plan for this assessment is to make sure the application works properly and has clear templates that allow users to interact with the system easily. The scope of this assessment includes:
+- ADR documentation
+- Development of the Django web application
+- User interface templates
+- Database and relationship design
+- Views and URL routing
+- Supplementary materials such as ERDs, class diagrams, and code review notes
