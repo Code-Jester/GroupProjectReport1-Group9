@@ -29,6 +29,16 @@ WorkforceConnect is a Django web application developed for Theme 2: Economic Str
 - `static` – CSS files for styling
 - `templates` – HTML templates for the user interface
 
+## Requirements
+To run this project, you need:
+- Python 3.14 or compatible Python 3 version
+- Django 6.0.4
+- Other required packages listed in `requirements.txt`
+
+Install the required packages by running:
+1. ```bash
+   pip install -r requirements.txt
+
 ## How to Run the Project
 1. Open the project folder in VS Code
 2. Open the terminal
