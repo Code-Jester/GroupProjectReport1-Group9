@@ -2,16 +2,30 @@
 
 This project is based on Django Web application, as it required us to build a web application using python in this assessment. This application focuses on building a structured application where it has accessed to the data by selecting from the dataset. Our project are based on economics strategy and workforce, where the target is to provide a support for youth workers, employers. The project focus on accessiblility, ensuring that they have choices and find what suits them the most.
 
+## Target Users
+
+The system is designed for two main user groups:
+	Workers/Youth Workers:
+- Explore job opportunities
+- View required skills
+- Understand workforce trends
+	Employers:
+- View available workers
+- Identify skill gaps
+- Match job requirements with worker skills
+
 ## Scope
 The plan is to ensure the application's functionality is running perfectly and have a clear templaets for users to interfere. The scope that are used in this assessment are:
-- ADR documentaion
-- Django Web Application
-- Supplementary Materials
+- ADR documentaion: Documenting all major architectural decisions throughout development
+- Django Web Application: Building a fully functional web application using Django framework
+- Supplementary Materials: Including diagrams, planning notes, and supporting documentation
+
 
 ## Next Assessment Scope
-- More advance on the application design
-- Develop more industry process
-- Improve on problem-solving and implement new features
+- Upgrading the application design and simplifying the user interface
+- Adding more advanced features
+- Improving industry level processes
+- Expanding problem solving capabilities
 
 # Assessment 2 Submission Checklist
 ## Final submission
