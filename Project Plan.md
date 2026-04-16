@@ -80,3 +80,4 @@ The plan for this assessment is to make sure the application works properly and 
 - Database and relationship design
 - Views and URL routing
 - Supplementary materials such as ERDs, class diagrams, and code review notes
+ 
