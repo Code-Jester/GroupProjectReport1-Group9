@@ -68,7 +68,7 @@ The plan is to ensure the application's functionality is running perfectly and h
 
 ## Before submitting
 - [x] Check all links work
-- [ ] Check all group members contributed through commit history
+- [x] Check all group members contributed through commit history
 - [x] Check ADR references match real code lines
 - [x] Check the app is runnable
 - [x] Be ready for a 10-minute live code walkthrough and viva
