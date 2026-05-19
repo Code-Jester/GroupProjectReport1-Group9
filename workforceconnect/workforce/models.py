@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Skill(models.Model):
@@ -16,6 +17,13 @@ class Worker(models.Model):
         ('advanced', 'Advanced'),
     ]
 
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='worker_profile',
+        null=True,
+        blank=True
+    )
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
@@ -43,6 +51,13 @@ class WorkerSkill(models.Model):
 
 
 class Employer(models.Model):
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        related_name='employer_profile',
+        null=True,
+        blank=True
+    )
     organisation_name = models.CharField(max_length=150)
     industry = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
@@ -90,6 +105,9 @@ class Application(models.Model):
     job_opportunity = models.ForeignKey(JobOpportunity, on_delete=models.CASCADE, related_name='applications')
     application_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+
+    class Meta:
+        unique_together = ('worker', 'job_opportunity')
 
     def __str__(self):
         return f"{self.worker.name} -> {self.job_opportunity.title}"
