@@ -43,6 +43,12 @@ urlpatterns = [
     ),
 
     path(
+        'jobs/<int:pk>/apply/',
+        views.ApplyForJobView.as_view(),
+        name='apply_job'
+    ),
+
+    path(
         'training/',
         views.TrainingProgramListView.as_view(),
         name='training_list'
