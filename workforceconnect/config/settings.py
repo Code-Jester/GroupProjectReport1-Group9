@@ -10,10 +10,12 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
 SECRET_KEY = os.environ.get(
     'DJANGO_SECRET_KEY',
     'django-insecure-+29x8y5=#e_7b2-j3pk+=5k=4r2e#bkvyw)nubi&w^2=ta5ls^'
 )
+
 
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
@@ -21,6 +23,8 @@ ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS',
     'localhost,127.0.0.1'
 ).split(',')
+
+
 
 
 INSTALLED_APPS = [
@@ -31,10 +35,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    
     'rest_framework',
 
+    
     'workforce',
 ]
+
+
 
 
 MIDDLEWARE = [
@@ -48,7 +56,9 @@ MIDDLEWARE = [
 ]
 
 
+
 ROOT_URLCONF = 'config.urls'
+
 
 
 TEMPLATES = [
@@ -67,7 +77,10 @@ TEMPLATES = [
 ]
 
 
+
 WSGI_APPLICATION = 'config.wsgi.application'
+
+
 
 
 DATABASES = {
@@ -76,6 +89,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -94,6 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -104,12 +120,26 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
+
 LOGIN_URL = 'login'
+
 LOGIN_REDIRECT_URL = 'home'
+
 LOGOUT_REDIRECT_URL = 'home'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
+
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

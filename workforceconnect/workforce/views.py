@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.generic import ListView, DetailView
@@ -65,6 +66,9 @@ class ApplyForJobView(LoginRequiredMixin, View):
         except DuplicateApplication as e:
             messages.warning(request, str(e))
 
+        except ValidationError as e:
+            messages.error(request, str(e))
+
         return redirect('job_detail', pk=pk)
 
 
@@ -81,6 +85,8 @@ class ApplicationListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         if hasattr(self.request.user, 'worker_profile'):
-            return Application.objects.filter(worker=self.request.user.worker_profile)
+            return Application.objects.filter(
+                worker=self.request.user.worker_profile
+            )
 
         return Application.objects.none()
