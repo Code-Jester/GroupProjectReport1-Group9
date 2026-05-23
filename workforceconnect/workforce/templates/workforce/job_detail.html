@@ -4,12 +4,6 @@
 
 <h1>{{ job.title }}</h1>
 
-<a href="{% url 'job_list' %}">
-    Back to Jobs
-</a>
-
-<hr>
-
 <p>
     <strong>Employer:</strong>
     {{ job.employer.organisation_name }}
@@ -32,30 +26,21 @@
 
 <h2>Required Skills</h2>
 
-<ul>
+<ul class="card-list">
     {% for skill in job.required_skills.all %}
-        <li>{{ skill.name }}</li>
+        <li>{{ skill.name }} - {{ skill.category }}</li>
     {% empty %}
         <li>No required skills listed.</li>
     {% endfor %}
 </ul>
 
+<form method="post" action="{% url 'apply_job' job.pk %}">
+    {% csrf_token %}
+    <button type="submit">Apply for this job</button>
+</form>
 
-{% if user.is_authenticated %}
+<br>
 
-    <form method="post" action="{% url 'apply_job' job.pk %}">
-        {% csrf_token %}
-        <button type="submit">
-            Apply for this Job
-        </button>
-    </form>
-
-{% else %}
-
-    <p>
-        Please login to apply.
-    </p>
-
-{% endif %}
+<a href="{% url 'job_list' %}">Back to Jobs</a>
 
 {% endblock %}
