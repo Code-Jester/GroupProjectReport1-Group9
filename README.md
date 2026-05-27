@@ -139,6 +139,7 @@ source .venv/Scripts/activate
 ```powershell
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+python -m pip install djangorestframework
 ```
 
 ### 5. Go to the Django project folder
