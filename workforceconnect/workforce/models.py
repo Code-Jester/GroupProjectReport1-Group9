@@ -1,113 +1,161 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Skill(models.Model):
-    name = models.CharField(max_length=100)
-    category = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Worker(models.Model):
-    EXPERIENCE_CHOICES = [
-        ('beginner', 'Beginner'),
-        ('intermediate', 'Intermediate'),
-        ('advanced', 'Advanced'),
+    EXPERIENCE_LEVELS = [
+        ("beginner", "Beginner"),
+        ("intermediate", "Intermediate"),
+        ("advanced", "Advanced"),
     ]
 
     user = models.OneToOneField(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='worker_profile',
-        null=True,
+        related_name="worker_profile"
+    )
+    full_name = models.CharField(max_length=150)
+    experience_level = models.CharField(
+        max_length=20,
+        choices=EXPERIENCE_LEVELS,
+        default="beginner"
+    )
+    availability = models.BooleanField(default=True)
+    skills = models.ManyToManyField(
+        Skill,
+        through="WorkerSkill",
         blank=True
     )
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=20)
-    experience_level = models.CharField(max_length=20, choices=EXPERIENCE_CHOICES)
-    availability = models.BooleanField(default=True)
-    skills = models.ManyToManyField(Skill, through='WorkerSkill')
 
     def __str__(self):
-        return self.name
+        return self.full_name
 
 
 class WorkerSkill(models.Model):
-    PROFICIENCY_CHOICES = [
-        ('basic', 'Basic'),
-        ('good', 'Good'),
-        ('expert', 'Expert'),
+    PROFICIENCY_LEVELS = [
+        ("basic", "Basic"),
+        ("good", "Good"),
+        ("expert", "Expert"),
     ]
 
     worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
-    proficiency_level = models.CharField(max_length=20, choices=PROFICIENCY_CHOICES)
+    proficiency = models.CharField(
+        max_length=20,
+        choices=PROFICIENCY_LEVELS,
+        default="basic"
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["worker", "skill"],
+                name="unique_worker_skill"
+            )
+        ]
 
     def __str__(self):
-        return f"{self.worker.name} - {self.skill.name}"
+        return f"{self.worker} - {self.skill} ({self.proficiency})"
 
 
 class Employer(models.Model):
     user = models.OneToOneField(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='employer_profile',
+        related_name="employer_profile",
         null=True,
         blank=True
     )
-    organisation_name = models.CharField(max_length=150)
-    industry = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=150, unique=True)
     contact_email = models.EmailField()
 
     def __str__(self):
-        return self.organisation_name
+        return self.company_name
 
 
 class JobOpportunity(models.Model):
     STATUS_CHOICES = [
-        ('open', 'Open'),
-        ('closed', 'Closed'),
+        ("open", "Open"),
+        ("closed", "Closed"),
     ]
 
-    employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='jobs')
     title = models.CharField(max_length=150)
+    employer = models.ForeignKey(
+        Employer,
+        on_delete=models.CASCADE,
+        related_name="jobs"
+    )
     description = models.TextField()
-    required_skills = models.ManyToManyField(Skill, related_name='job_opportunities')
-    salary_range = models.CharField(max_length=50)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
+    salary_range = models.CharField(max_length=100, blank=True)
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="open"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["employer", "title"],
+                name="unique_employer_job_title"
+            )
+        ]
 
     def __str__(self):
-        return self.title
+        return f"{self.title} - {self.employer}"
 
 
 class TrainingProgram(models.Model):
     title = models.CharField(max_length=150)
-    provider = models.CharField(max_length=150)
-    target_skill = models.ForeignKey(Skill, on_delete=models.CASCADE, related_name='training_programs')
-    duration_weeks = models.PositiveIntegerField()
+    description = models.TextField()
+    skill = models.ForeignKey(
+        Skill,
+        on_delete=models.CASCADE,
+        related_name="training_programs"
+    )
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["title", "skill"],
+                name="unique_training_program_skill"
+            )
+        ]
 
     def __str__(self):
         return self.title
 
 
 class Application(models.Model):
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('accepted', 'Accepted'),
-        ('rejected', 'Rejected'),
-    ]
-
-    worker = models.ForeignKey(Worker, on_delete=models.CASCADE, related_name='applications')
-    job_opportunity = models.ForeignKey(JobOpportunity, on_delete=models.CASCADE, related_name='applications')
-    application_date = models.DateField(auto_now_add=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    worker = models.ForeignKey(
+        Worker,
+        on_delete=models.CASCADE,
+        related_name="applications"
+    )
+    job = models.ForeignKey(
+        JobOpportunity,
+        on_delete=models.CASCADE,
+        related_name="applications"
+    )
+    cover_letter = models.TextField(blank=True)
+    applied_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('worker', 'job_opportunity')
+        constraints = [
+            models.UniqueConstraint(
+                fields=["worker", "job"],
+                name="unique_worker_job_application"
+            )
+        ]
 
     def __str__(self):
-        return f"{self.worker.name} -> {self.job_opportunity.title}"
+        return f"{self.worker} applied for {self.job}"
