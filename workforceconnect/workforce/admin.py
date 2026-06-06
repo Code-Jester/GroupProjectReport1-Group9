@@ -7,105 +7,106 @@ from .models import (
     Employer,
     JobOpportunity,
     TrainingProgram,
-    Application
+    Application,
 )
 
 
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category')
-    search_fields = ('name', 'category')
+    list_display = ("name", "description")
+    search_fields = ("name", "description")
 
 
 @admin.register(Worker)
 class WorkerAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
-        'email',
-        'experience_level',
-        'availability'
+        "full_name",
+        "user",
+        "experience_level",
+        "availability",
     )
-
     list_filter = (
-        'experience_level',
-        'availability'
+        "experience_level",
+        "availability",
     )
-
     search_fields = (
-        'name',
-        'email'
+        "full_name",
+        "user__username",
+        "user__email",
     )
 
 
 @admin.register(WorkerSkill)
 class WorkerSkillAdmin(admin.ModelAdmin):
     list_display = (
-        'worker',
-        'skill',
-        'proficiency_level'
+        "worker",
+        "skill",
+        "proficiency",
     )
-
     list_filter = (
-        'proficiency_level',
+        "proficiency",
+    )
+    search_fields = (
+        "worker__full_name",
+        "skill__name",
     )
 
 
 @admin.register(Employer)
 class EmployerAdmin(admin.ModelAdmin):
     list_display = (
-        'organisation_name',
-        'industry',
-        'location'
+        "company_name",
+        "user",
+        "contact_email",
     )
-
     search_fields = (
-        'organisation_name',
-        'industry'
+        "company_name",
+        "contact_email",
+        "user__username",
     )
 
 
 @admin.register(JobOpportunity)
 class JobOpportunityAdmin(admin.ModelAdmin):
     list_display = (
-        'title',
-        'employer',
-        'salary_range',
-        'status'
+        "title",
+        "employer",
+        "salary_range",
+        "status",
+        "created_at",
     )
-
     list_filter = (
-        'status',
+        "status",
+        "created_at",
     )
-
     search_fields = (
-        'title',
-        'description'
+        "title",
+        "description",
+        "employer__company_name",
     )
 
 
 @admin.register(TrainingProgram)
 class TrainingProgramAdmin(admin.ModelAdmin):
     list_display = (
-        'title',
-        'provider',
-        'duration_weeks'
+        "title",
+        "skill",
     )
-
     search_fields = (
-        'title',
-        'provider'
+        "title",
+        "description",
+        "skill__name",
     )
 
 
 @admin.register(Application)
 class ApplicationAdmin(admin.ModelAdmin):
     list_display = (
-        'worker',
-        'job_opportunity',
-        'status',
-        'application_date'
+        "worker",
+        "job",
+        "applied_at",
     )
-
-    list_filter = (
-        'status',
+    search_fields = (
+        "worker__full_name",
+        "job__title",
     )
