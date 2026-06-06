@@ -41,6 +41,7 @@ Members agreed to follow university academic integrity policies that will follow
 - On 25/03/2026, we have set up a meeting to start on our project and decide on the tasks that we are going to complete by next meeting.
 - On 03/04/2026, Meeting 2, update on each member tasks to stay on track.
 - 15/04/2026, Meeting 3 to finalise each member tasks to ensure the assessment are done and checked with our checkpoints.
+- 22/05/2026, Meeting 4 to finalise each member tasks to ensure the assessment are done and checked with our 3 checkpoints.
   
 ## 2.2 Internal Checkpoints
 - Usually update progress during in offline class
